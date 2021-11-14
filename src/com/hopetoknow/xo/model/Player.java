@@ -1,4 +1,4 @@
-package com.hopetoknow.xo;
+package com.hopetoknow.xo.model;
 
 public class Player {
 
