@@ -1,7 +1,7 @@
 package com.hopetoknow.xo.model;
 
 import com.hopetoknow.xo.model.exceptions.InvalidPointException;
-import org.junit.jupiter.api.BeforeEach;
+import com.hopetoknow.xo.model.exceptions.PointAlreadyOccupiedException;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -33,6 +33,19 @@ class FieldTest {
 
         assertEquals(expectedFigure, actualFigure);
     }
+
+    @Test
+    void setFigureWhenPointAlreadyOccupied() throws Exception {
+        Figure testFigure = Figure.O;
+
+        field.setFigure(point, testFigure);
+
+        try {
+            field.setFigure(point, testFigure);
+            fail();
+        } catch (PointAlreadyOccupiedException e) {}
+    }
+
 
     @Test
     void getFigureWhenFigureIsNotSet() throws Exception {
