@@ -1,5 +1,7 @@
 package com.hopetoknow.xo.model;
 
+import com.hopetoknow.xo.model.exceptions.InvalidPointException;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -8,26 +10,71 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FieldTest {
 
+    private Field field = new Field();
+
+    private Point point = new Point(0, 0);
+
     @Test
     void getSize() {
-        final int expectedSize = 3;
+        int expectedSize = 3;
 
-        final Field field = new Field();
-        final int actualSize = field.getSize();
+        int actualSize = field.getSize();
 
         assertEquals(expectedSize, actualSize);
     }
 
     @Test
-    void setFigure() {
-        final Field field = new Field();
-        final Point point = new Point(0, 0);
-        final Figure testFigure = Figure.O;
-        final Figure expectedFigure = testFigure;
+    void setFigure() throws Exception {
+        Figure testFigure = Figure.O;
+        Figure expectedFigure = testFigure;
 
         field.setFigure(point, testFigure);
-        final Figure actualFigure = field.getFigure(point);
+        Figure actualFigure = field.getFigure(point);
 
         assertEquals(expectedFigure, actualFigure);
     }
+
+    @Test
+    void getFigureWhenFigureIsNotSet() throws Exception {
+        Figure actualFigure = field.getFigure(point);
+
+        assertNull(actualFigure);
+    }
+
+    @Test
+    void getFigureWhenXCoordinateIsLessThanZero() {
+        point = new Point(-1 ,0);
+        try {
+            field.getFigure(point);
+            fail();
+        } catch (InvalidPointException e) {}
+    }
+
+    @Test
+    void getFigureWhenYCoordinateIsLessThanZero() {
+        point = new Point(0 ,-1);
+        try {
+            field.getFigure(point);
+            fail();
+        } catch (InvalidPointException e) {}
+    }
+
+    @Test
+    void getFigureWhenXCoordinateIsMoreThanFieldSize() {
+        point = new Point(field.getSize(), 0);
+        try {
+            field.getFigure(point);
+            fail();
+        } catch (InvalidPointException e) {}
+    }
+
+    @Test
+    void getFigureWhenYCoordinateIsMoreThanFieldSize() {
+        point = new Point(0,field.getSize());
+        try {
+            field.getFigure(point);
+            fail();
+        } catch (InvalidPointException e) {}
+    }
+
 }

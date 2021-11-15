@@ -8,22 +8,22 @@ class PlayerTest {
 
     @Test
     void getName() {
-        final String testName = "Bobby";
-        final String expectedName = testName;
+        String testName = "Bobby";
+        String expectedName = testName;
 
-        final Player player = new Player(testName, null);
-        final String actualName = player.getName();
+        Player player = new Player(testName, null);
+        String actualName = player.getName();
 
         assertEquals(expectedName, actualName);
     }
 
     @Test
     void getFigure() {
-        final Figure testFigure = Figure.X;
-        final Figure expectedFigure = testFigure;
+        Figure testFigure = Figure.X;
+        Figure expectedFigure = testFigure;
 
-        final Player player = new Player(null, testFigure);
-        final Figure actualFigure = player.getFigure();
+        Player player = new Player(null, testFigure);
+        Figure actualFigure = player.getFigure();
 
         assertEquals(expectedFigure, actualFigure);
     }
