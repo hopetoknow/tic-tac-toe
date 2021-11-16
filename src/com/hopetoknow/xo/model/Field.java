@@ -1,20 +1,24 @@
 package com.hopetoknow.xo.model;
 
 import com.hopetoknow.xo.model.exceptions.InvalidPointException;
-import com.hopetoknow.xo.model.exceptions.PointAlreadyOccupiedException;
 
 import java.awt.*;
 
 public class Field {
 
-    public static final int FIELD_SIZE = 3;
-
     public static final int MIN_COORDINATE = 0;
 
-    private final Figure[][] field = new Figure[FIELD_SIZE][FIELD_SIZE];
+    private final int fieldSize;
+
+    private final Figure[][] field;
+
+    public Field(int fieldSize) {
+        this.fieldSize = fieldSize;
+        field = new Figure[fieldSize][fieldSize];
+    }
 
     public int getSize() {
-        return FIELD_SIZE;
+        return fieldSize;
     }
 
     public Figure getFigure(Point point) throws InvalidPointException {
@@ -24,12 +28,9 @@ public class Field {
         return field[point.x][point.y];
     }
 
-    public void setFigure(Point point, Figure figure) throws InvalidPointException, PointAlreadyOccupiedException {
+    public void setFigure(Point point, Figure figure) throws InvalidPointException {
         if (!isPointValid(point)) {
             throw new InvalidPointException();
-        }
-        if (field[point.x][point.y] != null) {
-            throw new PointAlreadyOccupiedException();
         }
         field[point.x][point.y] = figure;
     }
@@ -39,6 +40,7 @@ public class Field {
     }
 
     private boolean isCoordinateValid(int coordinate) {
-        return coordinate >= MIN_COORDINATE && coordinate < FIELD_SIZE;
+        return coordinate >= MIN_COORDINATE && coordinate < fieldSize;
     }
+
 }
