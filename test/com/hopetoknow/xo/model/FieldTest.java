@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FieldTest {
 
-    private Field field = new Field();
+    private Field field = new Field(3);
 
     private Point point = new Point(0, 0);
 
@@ -33,19 +33,6 @@ class FieldTest {
 
         assertEquals(expectedFigure, actualFigure);
     }
-
-    @Test
-    void setFigureWhenPointAlreadyOccupied() throws Exception {
-        Figure testFigure = Figure.O;
-
-        field.setFigure(point, testFigure);
-
-        try {
-            field.setFigure(point, testFigure);
-            fail();
-        } catch (PointAlreadyOccupiedException e) {}
-    }
-
 
     @Test
     void getFigureWhenFigureIsNotSet() throws Exception {
