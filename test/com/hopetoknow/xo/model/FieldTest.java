@@ -1,7 +1,6 @@
 package com.hopetoknow.xo.model;
 
 import com.hopetoknow.xo.model.exceptions.InvalidPointException;
-import com.hopetoknow.xo.model.exceptions.PointAlreadyOccupiedException;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -47,7 +46,9 @@ class FieldTest {
         try {
             field.getFigure(point);
             fail();
-        } catch (InvalidPointException e) {}
+        } catch (InvalidPointException e) {
+
+        }
     }
 
     @Test
@@ -56,7 +57,9 @@ class FieldTest {
         try {
             field.getFigure(point);
             fail();
-        } catch (InvalidPointException e) {}
+        } catch (InvalidPointException e) {
+
+        }
     }
 
     @Test
@@ -65,7 +68,9 @@ class FieldTest {
         try {
             field.getFigure(point);
             fail();
-        } catch (InvalidPointException e) {}
+        } catch (InvalidPointException e) {
+
+        }
     }
 
     @Test
@@ -74,7 +79,9 @@ class FieldTest {
         try {
             field.getFigure(point);
             fail();
-        } catch (InvalidPointException e) {}
+        } catch (InvalidPointException e) {
+
+        }
     }
 
 }
