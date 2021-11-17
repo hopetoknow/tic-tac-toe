@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class FieldTest {
 
-    private Field field = new Field(3);
+    private final Field field = new Field(3);
 
     private Point point = new Point(0, 0);
 
