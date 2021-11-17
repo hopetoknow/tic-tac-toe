@@ -2,7 +2,6 @@ package com.hopetoknow.xo.controllers;
 
 import com.hopetoknow.xo.model.Field;
 import com.hopetoknow.xo.model.Figure;
-import com.hopetoknow.xo.model.exceptions.AbstractXOException;
 import com.hopetoknow.xo.model.exceptions.InvalidPointException;
 import com.hopetoknow.xo.model.exceptions.PointAlreadyOccupiedException;
 
