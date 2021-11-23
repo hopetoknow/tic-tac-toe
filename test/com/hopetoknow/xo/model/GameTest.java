@@ -41,4 +41,5 @@ public class GameTest {
 
         assertEquals(expectedName, actualName);
     }
+
 }

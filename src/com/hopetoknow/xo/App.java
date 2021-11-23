@@ -7,6 +7,7 @@ import com.hopetoknow.xo.model.Player;
 import com.hopetoknow.xo.view.ConsoleView;
 
 public class App {
+
     public static void main(String[] args) {
         Player[] players = new Player[2];
         players[0] = new Player("Player1", Figure.X);
@@ -20,4 +21,5 @@ public class App {
             consoleView.showField(game);
         }
     }
+
 }
