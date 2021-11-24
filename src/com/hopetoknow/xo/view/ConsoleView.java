@@ -31,12 +31,14 @@ public class ConsoleView {
     }
 
     public void showField() {
+        StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < field.getSize(); i++) {
             if (i != 0) {
-                printLineSeparator(field.getSize());
+                printLineSeparator(field.getSize(), stringBuilder);
             }
-            printLine(field, i);
+            printLine(field, i, stringBuilder);
         }
+        System.out.print(stringBuilder);
     }
 
     public boolean isMove() {
@@ -80,12 +82,12 @@ public class ConsoleView {
         }
     }
 
-    private void printLine(Field field, int i) {
+    private void printLine(Field field, int i, StringBuilder stringBuilder) {
         for (int j = 0; j < field.getSize(); j++) {
             if (j != 0) {
-                System.out.print("|");
+                stringBuilder.append("|");
             }
-            System.out.print(" ");
+            stringBuilder.append(" ");
             Figure figure;
             try {
                 figure = field.getFigure(new Point(j, i));
@@ -93,17 +95,15 @@ public class ConsoleView {
                 e.printStackTrace();
                 throw new RuntimeException(e);
             }
-            System.out.print(figure != null ? figure : " ");
-            System.out.print(" ");
+            stringBuilder.append(figure != null ? figure : " ");
+            stringBuilder.append(" ");
         }
-        System.out.println();
+        stringBuilder.append(System.getProperty("line.separator"));
     }
 
-    private void printLineSeparator(int fieldSize) {
-        for (int i = 0; i < fieldSize * 3 + fieldSize - 1; i++) {
-            System.out.print("_");
-        }
-        System.out.println();
+    private void printLineSeparator(int fieldSize, StringBuilder stringBuilder) {
+        stringBuilder.append("_".repeat(fieldSize * 3 + fieldSize - 1));
+        stringBuilder.append(System.getProperty("line.separator"));
     }
 
 }
