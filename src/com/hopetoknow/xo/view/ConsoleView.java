@@ -6,7 +6,6 @@ import com.hopetoknow.xo.controllers.WinnerController;
 import com.hopetoknow.xo.model.Field;
 import com.hopetoknow.xo.model.Figure;
 import com.hopetoknow.xo.model.Game;
-import com.hopetoknow.xo.model.Player;
 import com.hopetoknow.xo.model.exceptions.InvalidPointException;
 import com.hopetoknow.xo.model.exceptions.PointAlreadyOccupiedException;
 
@@ -16,8 +15,22 @@ import java.util.Scanner;
 
 public class ConsoleView {
 
-    public void showField(Game game) {
-        Field field = game.getField();
+    private final Field field;
+    
+    private final WinnerController winnerController;
+
+    private final CurrentMoveController currentMoveController;
+
+    private final MoveController moveController;
+
+    public ConsoleView(Game game) {
+        this.field = game.getField();
+        this.winnerController = new WinnerController();
+        this.currentMoveController = new CurrentMoveController();
+        this.moveController =  new MoveController();
+    }
+
+    public void showField() {
         for (int i = 0; i < field.getSize(); i++) {
             if (i != 0) {
                 printLineSeparator(field.getSize());
@@ -26,23 +39,18 @@ public class ConsoleView {
         }
     }
 
-    public boolean move(Game game) {
-        Field field = game.getField();
-        WinnerController winnerController = new WinnerController();
+    public boolean isMove() {
         Figure winner = winnerController.getWinner(field);
         if (winner != null ) {
             System.out.printf("\nWinner is %s.", winner);
             return false;
         }
-
-        CurrentMoveController currentMoveController = new CurrentMoveController();
-        Figure currentFigure = currentMoveController.currentMove(game.getField());
+        Figure currentFigure = currentMoveController.getCurrentMove(field);
         if (currentFigure == null) {
             System.out.println("\nIt's a tie.");
             return false;
         }
         System.out.format("It's %s's turn to move.\n", currentFigure);
-        MoveController moveController = new MoveController();
         try {
             moveController.applyFigure(field, getPointFromUser(), currentFigure);
         } catch (InvalidPointException e) {
@@ -50,7 +58,6 @@ public class ConsoleView {
         } catch (PointAlreadyOccupiedException e) {
             System.out.println("\nERROR! Point is already occupied. Please enter another coordinates.\n");
         }
-
         return true;
     }
 
@@ -60,9 +67,9 @@ public class ConsoleView {
 
     private int getCoordinateFromUser(final String coordinateName) {
         if ("X".equals(coordinateName)) {
-            System.out.print("Enter the X coordinate (where X is from 1 to 3 horizontally): ");
+            System.out.printf("Enter the X coordinate (where X is from 1 to %d horizontally): ", field.getSize());
         } else if ("Y".equals(coordinateName)) {
-            System.out.print("Enter the Y coordinate (where Y is from 1 to 3 vertically): ");
+            System.out.printf("Enter the Y coordinate (where Y is from 1 to %d vertically): ", field.getSize());
         }
         try {
             Scanner in = new Scanner(System.in);

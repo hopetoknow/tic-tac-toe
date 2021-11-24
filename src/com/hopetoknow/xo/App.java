@@ -15,10 +15,10 @@ public class App {
         Field field = new Field(3);
         Game game = new Game(players, field, "Tic-tac-toe");
         System.out.format("Game name: %s\n", game.getName());
-        ConsoleView consoleView = new ConsoleView();
-        consoleView.showField(game);
-        while (consoleView.move(game)) {
-            consoleView.showField(game);
+        ConsoleView consoleView = new ConsoleView(game);
+        consoleView.showField();
+        while (consoleView.isMove()) {
+            consoleView.showField();
         }
     }
 
