@@ -19,7 +19,7 @@ class CurrentMoveControllerTest {
         Figure testFigure = Figure.X;
         Figure expectedFigure = testFigure;
 
-        Figure actualFigure = currentMoveController.currentMove(field);
+        Figure actualFigure = currentMoveController.getCurrentMove(field);
 
         assertEquals(expectedFigure, actualFigure);
     }
@@ -40,7 +40,7 @@ class CurrentMoveControllerTest {
             }
         }
 
-        Figure actualFigure = currentMoveController.currentMove(field);
+        Figure actualFigure = currentMoveController.getCurrentMove(field);
 
         assertNull(actualFigure);
     }
@@ -51,7 +51,7 @@ class CurrentMoveControllerTest {
         Figure expectedFigure = Figure.O;
         field.setFigure(new Point(0, 0), testFigure);
 
-        Figure actualFigure = currentMoveController.currentMove(field);
+        Figure actualFigure = currentMoveController.getCurrentMove(field);
 
         assertEquals(expectedFigure, actualFigure);
     }
@@ -64,7 +64,7 @@ class CurrentMoveControllerTest {
         field.setFigure(new Point(0, 0), testFigureX);
         field.setFigure(new Point(0, 1), testFigureO);
 
-        Figure actualFigure = currentMoveController.currentMove(field);
+        Figure actualFigure = currentMoveController.getCurrentMove(field);
 
         assertEquals(expectedFigure, actualFigure);
     }

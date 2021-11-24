@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class CurrentMoveController {
 
-    public Figure currentMove(Field field) {
+    public Figure getCurrentMove(Field field) {
         int figureCounter = 0;
         for (int i = 0; i < field.getSize(); i++) {
             figureCounter += countFiguresInRow(field, i);
