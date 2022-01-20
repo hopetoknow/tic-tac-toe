@@ -32,12 +32,17 @@ public class ConsoleView {
 
     public void showField() {
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < field.getSize(); i++) {
+        int fieldSize = field.getSize();
+        for (int i = 0; i < fieldSize; i++) {
+            if (i == 0) {
+                stringBuilder.append(System.getProperty("line.separator"));
+            }
             if (i != 0) {
                 printLineSeparator(field.getSize(), stringBuilder);
             }
             printLine(field, i, stringBuilder);
         }
+        stringBuilder.append(System.getProperty("line.separator"));
         System.out.print(stringBuilder);
     }
 
