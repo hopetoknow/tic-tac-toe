@@ -11,7 +11,7 @@ public class App {
 
     public static void main(String[] args) {
         String gameName = "Tic-tac-toe";
-        System.out.format("Game name: %s\n", gameName);
+        System.out.format("\nGame name: %s\n\n", gameName);
         Player[] players = new Player[2];
         players[0] = new Player("Player1", Figure.X);
         players[1] = new Player("Player2", Figure.O);

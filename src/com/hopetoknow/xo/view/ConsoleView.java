@@ -49,21 +49,21 @@ public class ConsoleView {
     public boolean isMove() {
         Figure winner = winnerController.getWinner(field);
         if (winner != null ) {
-            System.out.printf("\nWinner is %s.", winner);
+            System.out.printf("Winner is %s.\n", winner);
             return false;
         }
         Figure currentFigure = currentMoveController.getCurrentMove(field);
         if (currentFigure == null) {
-            System.out.println("\nIt's a tie.");
+            System.out.println("It's a tie.");
             return false;
         }
         System.out.format("It's %s's turn to move.\n", currentFigure);
         try {
             moveController.applyFigure(field, getPointFromUser(), currentFigure);
         } catch (InvalidPointException e) {
-            System.out.println("\nERROR! Please enter valid point coordinates.\n");
+            System.out.println("\nERROR! Please enter valid point coordinates.");
         } catch (PointAlreadyOccupiedException e) {
-            System.out.println("\nERROR! Point is already occupied. Please enter another coordinates.\n");
+            System.out.println("\nERROR! Point is already occupied. Please enter another coordinates.");
         }
         return true;
     }
